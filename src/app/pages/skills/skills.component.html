@@ -1,0 +1,45 @@
+<div class="container">
+    <form class="form mt-5">
+      <div class="form-row">
+        <div class="form-group col-10">
+          <input type="text" class="form-control" [(ngModel)]="taskName" name="taskName">
+        </div>
+        <div class="form-group col-2">
+          <button class="btn btn-success" (click)="createTask()">Add</button>
+        </div>
+      </div>
+    </form>
+    <table class="table table-hover">
+      <thead>
+        <th>#</th>
+        <th>Name</th>
+        <th>Check</th>
+        <th>Done/In Progress</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of userTask; let i=index">
+          <td>{{i+1}}</td>
+          <td>{{task.name}}</td>
+          <td><input type="checkbox" [checked]="task.done" (click)="changeStatus(task)"></td>
+          <td [style.color]="task.done ? 'green':'red'">{{task.done ? 'Done' : 'In Progress'}}</td>
+          <td>
+            <button class="btn btn-warning" (click)="editTask(i, task)">Edit</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="removeTask(task)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td [ngClass]="{'invisible': visability}"><input type="text" class="form-control" [(ngModel)]="editName"
+            name="editName"></td>
+        <td [ngClass]="{'invisible': visability}"><button class="btn btn-success" (click)="saveEditTask()">Save</button>
+        </td>
+      </tr>
+    </table>
+  </div>

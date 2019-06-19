@@ -1,0 +1,12 @@
+.bord {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.dataText {
+    font-size: 11px;
+}
+
+.bg {
+    background-color: rgb(233, 232, 232);
+}

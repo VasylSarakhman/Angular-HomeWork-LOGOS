@@ -1,0 +1,61 @@
+<div class="container col-6">
+    <div class="form-group">
+      <label for="usr">Name:</label>
+      <input type="text" class="form-control" id="usr" [(ngModel)]="userName" name="userName">
+    </div>
+    <div class="form-group">
+      <label for="usr">Title:</label>
+      <input type="text" class="form-control" id="usr" [(ngModel)]="subject" name="subject">
+    </div>
+    <div class="form-group">
+      <label for="comment">Comment:</label>
+      <textarea class="form-control" id="comment" [(ngModel)]="notice" name="notice"></textarea>
+      <button type="button" class="btn btn-success btn-sm mt-1" (click)="sendNotice()">Success</button>
+    </div>
+    <div class="panel panel-default " *ngFor="let message of messages; let i=index">
+      <div class="media">
+        <img src="../assets/images/myimg.png" class="mr-3">
+        <div class="media-body border mb-2">
+            <button type="button" class="close mr-1">
+                <span aria-hidden="true" (click)="deleteNotice(message)">x</span>
+              </button>
+            <button type="button" class="close mr-1">
+                <span aria-hidden="true"(click)="editNotice(message)" data-toggle="modal"
+                data-target="#exampleModal">e</span>
+              </button>
+          <div>
+            <h4 class="mt-0">{{ userName }}</h4>
+            <p class="dataText">Post: {{ message.date | date:"dd/MM/yyyy hh:mm:ss" }}</p>
+          </div>
+          <div>
+            <h6 class="mt-0">{{ message.subject }}</h6>
+            {{ message.notice }}
+          </div>
+        </div>
+      </div>      
+      </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="changeTitle" class="col-form-label">Title:</label>
+                <input type="text" class="form-control" [(ngModel)]="changeTitle" name="changeTitle">
+              </div>
+              <div class="form-group">
+                <label for="changeComment" class="col-form-label">Comment:</label>
+                <textarea class="form-control" [(ngModel)]="changeComment" name="changeComment"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-primary btn-sm"
+              (click)="saveEditNotice()">Change</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
